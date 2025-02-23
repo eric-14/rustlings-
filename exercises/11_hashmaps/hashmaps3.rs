@@ -26,6 +26,7 @@ fn build_scores_table(results: &str) -> HashMap<&str, TeamScores> {
     let mut scores = HashMap::<&str, TeamScores>::new();
 
     for line in results.lines() {
+        println!("L29 printing line {}", line); 
         let mut split_iterator = line.split(',');
         // NOTE: We use `unwrap` because we didn't deal with error handling yet.
         let team_1_name = split_iterator.next().unwrap();
@@ -41,11 +42,6 @@ fn build_scores_table(results: &str) -> HashMap<&str, TeamScores> {
 
        
         // Update the values.
-        
-
-
-
-
         // TODO: Populate the scores table with the extracted details.
         // Keep in mind that goals scored by team 1 will be the number of goals
         // conceded by team 2. Similarly, goals scored by team 2 will be the
@@ -99,17 +95,17 @@ mod tests {
     use super::*;
 
     const RESULTS: &str = "England,France,4,2,
-    France,Italy,3,1,
-    Poland,Spain,2,0,
-    Germany,England,2,1,
-    England,Spain,1,0";
+France,Italy,3,1,
+Poland,Spain,2,0,
+Germany,England,2,1,
+England,Spain,1,0";
 
     #[test]
     fn build_scores() {
 
-        let results = remove_whitespaces(String::from(RESULTS));
-        println!("L111  {}", results); 
-        let scores = build_scores_table(&results);
+        // let results = remove_whitespaces(String::from(RESULTS));
+        // println!("L111  {}", results); 
+        let scores = build_scores_table(&RESULTS);
 
         assert!(["England", "France", "Germany", "Italy", "Poland", "Spain"]
             .into_iter()
