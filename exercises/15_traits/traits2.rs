@@ -2,6 +2,12 @@ trait AppendBar {
     fn append_bar(self) -> Self;
 }
 
+
+impl<String> AppendBar for Vec<String> {
+    fn append_bar(self) -> Vec<String> {
+        self.push("Bar")
+    }
+}
 // TODO: Implement the trait `AppendBar` for a vector of strings.
 // `append_bar` should push the string "Bar" into the vector.
 
