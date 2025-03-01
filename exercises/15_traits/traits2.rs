@@ -3,9 +3,10 @@ trait AppendBar {
 }
 
 
-impl<String> AppendBar for Vec<String> {
-    fn append_bar(self) -> Vec<String> {
-        self.push("Bar")
+impl AppendBar for Vec<String> {
+    fn append_bar(mut self) ->Vec<String> {
+        self.push("Bar".to_string());
+        self 
     }
 }
 // TODO: Implement the trait `AppendBar` for a vector of strings.
