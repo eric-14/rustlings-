@@ -10,10 +10,18 @@ fn factorial(num: u64) -> u64 {
     // - additional variables
     // For an extra challenge, don't use:
     // - recursion
+    let mut result = 1; 
+    (1..num+1).for_each(|x| {        
+        result = result * x; 
+        println!("L16 result is {} X is {}", result, x); 
+    }); 
+    result 
+
 }
 
 fn main() {
     // You can optionally experiment here.
+    factorial(4); 
 }
 
 #[cfg(test)]
