@@ -143,7 +143,7 @@ mod tests {
     #[test]
     fn count_collection_none() {
         let collection = get_vec_map();
-        assert_eq!(count_collection_iterator(&collectqion, Progress::None), 4);
+        assert_eq!(count_collection_iterator(&collection, Progress::None), 4);
     }
 
     #[test]
