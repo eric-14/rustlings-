@@ -28,14 +28,50 @@ enum IntoColorError {
 impl TryFrom<(i16, i16, i16)> for Color {
     type Error = IntoColorError;
 
-    fn try_from(tuple: (i16, i16, i16)) -> Result<Self, Self::Error> {}
+    fn try_from(tuple: (i16, i16, i16)) -> Result<Self, Self::Error> {
+        let red = tuple.0; 
+        let green = tuple.1; 
+        let blue = tuple.2; 
+
+        if !rgb_range(red) || !rgb_range(blue) || !rgb_range(green ){
+            return Err(IntoColorError::IntConversion); 
+        }
+
+        Ok(Self {
+            red: red as u8,
+            blue: blue as u8, 
+            green: green as u8
+        })
+    }
 }
 
+
+fn rgb_range(color: i16) -> bool {
+    if color < 0 || color > 255 {
+        return false; 
+    }
+    return true; 
+}
 // TODO: Array implementation.
 impl TryFrom<[i16; 3]> for Color {
     type Error = IntoColorError;
 
-    fn try_from(arr: [i16; 3]) -> Result<Self, Self::Error> {}
+    fn try_from(arr: [i16; 3]) -> Result<Self, Self::Error> {
+        let red = arr[0] ; 
+        let green = arr[1]; 
+        let blue = arr[2]; 
+
+        if !rgb_range(red) || !rgb_range(blue) || !rgb_range(green ){
+            return Err(IntoColorError::IntConversion); 
+        }
+
+        Ok(Self {
+            red: red as u8, 
+            blue: blue as u8, 
+            green: green as u8
+        })
+
+    }
 }
 
 // TODO: Slice implementation.
@@ -43,7 +79,25 @@ impl TryFrom<[i16; 3]> for Color {
 impl TryFrom<&[i16]> for Color {
     type Error = IntoColorError;
 
-    fn try_from(slice: &[i16]) -> Result<Self, Self::Error> {}
+    fn try_from(slice: &[i16]) -> Result<Self, Self::Error> {
+        if slice.len() != 3 {
+            return Err(IntoColorError::BadLen); 
+        }
+
+        let red = slice[0]; 
+        let green = slice[1]; 
+        let blue = slice[2]; 
+
+        if !rgb_range(red) || !rgb_range(blue) || !rgb_range(green ){
+            return Err(IntoColorError::IntConversion); 
+        }
+
+        Ok(Self {
+            red: red as u8, 
+            blue: blue as u8, 
+            green: green as u8, 
+        })
+    }
 }
 
 fn main() {
